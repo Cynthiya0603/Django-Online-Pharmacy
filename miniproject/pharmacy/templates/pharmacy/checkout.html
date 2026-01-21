@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 30px;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 0 10px #ccc;
+        }
+        th, td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1976d2;
+            color: white;
+        }
+        .total {
+            text-align: right;
+            font-size: 18px;
+            padding-right: 10%;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #444;
+        }
+        .confirm-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .confirm-btn:hover {
+            background-color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Checkout</h2>
+
+    {% if cart_items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Medicine</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Sub Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.medicine.name }}</td>
+                        <td>₹{{ item.medicine.price }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>₹{{ item.medicine.price|floatformat:2|add:""|floatformat:2|add:item.quantity|floatformat:2 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total">
+            Total Amount: ₹{{ total_price }}
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="confirm-btn">Confirm & Place Order</button>
+        </form>
+
+    {% else %}
+        <p style="text-align: center; font-size: 18px;">Your cart is empty.</p>
+    {% endif %}
+
+</body>
+</html>

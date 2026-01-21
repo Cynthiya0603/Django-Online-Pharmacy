@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logged Out</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .logout-box {
+            background-color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        p {
+            margin-top: 10px;
+            color: #7f8c8d;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        a:hover {
+            background-color: #1f618d;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-box">
+        <h2>You have been logged out.</h2>
+        <p>Thank you for visiting our Online Pharmacy.</p>
+        <a href="{% url 'login' %}">Login Again</a>
+    </div>
+</body>
+</html>

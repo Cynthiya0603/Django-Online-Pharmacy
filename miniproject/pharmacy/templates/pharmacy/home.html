@@ -1,0 +1,49 @@
+{% extends 'pharmacy/base.html' %}
+{% block content %}
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .welcome-container {
+        height: calc(100vh - 60px); /* full height minus navbar */
+        background: linear-gradient(to right, #7dd3fc, #3b82f6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        text-align: center;
+    }
+
+    .welcome-title {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .shop-button {
+        padding: 12px 25px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        text-decoration: none;
+    }
+
+    .shop-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="welcome-container">
+    <div class="welcome-title">Welcome to Our Online Pharmacy</div>
+    <a href="{% url 'medicine_list' %}" class="shop-button">Shop Now</a>
+
+</div>
+{% endblock %}

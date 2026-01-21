@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Placed</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e3f2fd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .success-box {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        h2 {
+            color: #2e7d32;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        a:hover {
+            background-color: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-box">
+        <h2>Order Placed Successfully!</h2>
+        <p>Thank you for shopping with us.</p>
+        <a href="{% url 'home' %}">Back to Home</a>
+    </div>
+
+</body>
+</html>

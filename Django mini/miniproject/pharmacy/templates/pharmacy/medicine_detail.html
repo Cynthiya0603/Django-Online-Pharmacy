@@ -1,0 +1,128 @@
+{% extends 'pharmacy/base.html' %}
+
+
+{% block content %}
+<style>
+    .medicine-detail-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        padding: 20px;
+    }
+
+    .medicine-card {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 600px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .medicine-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .medicine-title {
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+    .medicine-image {
+        max-width: 200px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+    }
+
+    .medicine-price {
+        font-size: 22px;
+        color: #27ae60;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .medicine-description {
+        color: #555;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .prescription-info {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .prescription-info input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-warning {
+        background-color: #f57c00;
+        color: white;
+    }
+
+    .btn-warning:hover {
+        background-color: #e65100;
+    }
+</style>
+
+<div class="medicine-detail-container">
+    <div class="medicine-card">
+        <h2 class="medicine-title">{{ medicine.name }}</h2>
+
+        {% if medicine.image %}
+            <img src="{{ medicine.image.url }}" alt="{{ medicine.name }}" class="medicine-image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+
+        <p class="medicine-price">₹{{ medicine.price }}</p>
+
+        <p class="medicine-description">{{ medicine.description }}</p>
+
+        <div class="prescription-info">
+            {% if medicine.requires_prescription %}
+                <span style="color: red;"><input type="checkbox" checked disabled> Prescription Required</span>
+            {% else %}
+                <span style="color: green;"><input type="checkbox" checked disabled> No Prescription Required</span>
+            {% endif %}
+        </div>
+
+        <div class="btn-container">
+            <a href="{% url 'add_to_cart' medicine.id %}" class="btn btn-primary">Add to Cart</a>
+            <a href="{% url 'checkout' %}" class="btn btn-warning">Buy Now</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
